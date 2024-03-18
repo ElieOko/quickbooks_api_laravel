@@ -6,5 +6,6 @@ return   [
     'access_token' => env("QUICKBOOKS_ACCESS_TOKEN"),
     'refresh_token' => env("QUICKBOOKS_REFRESH_TOKEN"),
     'realm_id' => env("QUICKBOOKS_REALM_ID"),
-    'base_url' => env("QUICKBOOKS_BASE_URL")
+    'base_url' => env("QUICKBOOKS_BASE_URL"),
+    'oauth_scope' => env("QUICKBOOKS_SCOPE")
 ];
