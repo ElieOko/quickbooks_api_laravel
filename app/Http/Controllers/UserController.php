@@ -78,6 +78,7 @@ class UserController extends Controller
             'Authorization' => "Bearer $token"
         ]]);
         $client->get('https://qkbfront.drapeauyamboka.com/login');
+        header("https://qkbfront.drapeauyamboka.com/callback");
         return response()->json([
             "token" => $accessTokenJson,
         ]);
