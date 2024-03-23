@@ -77,10 +77,10 @@ class UserController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => "Bearer $token"
         ]]);
-        $client->get('https://quickbook.drapeauyamboka.com/');
-        // return response()->json([
-        //     "token" => $accessTokenJson,
-        // ]);
+        ///$client->get('https://quickbook.drapeauyamboka.com/');
+        return response()->json([
+            "token" => $accessTokenJson,
+        ]);
         /*
      * Setting the accessToken for session variable
      */
