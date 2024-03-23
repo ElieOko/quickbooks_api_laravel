@@ -73,7 +73,7 @@ class UserController extends Controller
         );
         $_SESSION['sessionAccessToken']  = $accessTokenJson;
         //$dataService->updateOAuth2Token($accessToken)
-        $token = $accessToken["access_token"];
+        $token = $accessTokenJson["access_token"];
         $client = new Client(['headers' => [
             'Authorization' => "Bearer $token"
         ]]);
