@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use QuickBooksOnline\API\DataService\DataService;
 
@@ -72,9 +73,14 @@ class UserController extends Controller
         );
         $_SESSION['sessionAccessToken']  = $accessTokenJson;
         //$dataService->updateOAuth2Token($accessToken)
-        return response()->json([
-            "token" => $accessTokenJson,
-        ]);
+        $token = $accessToken["access_token"];
+        $client = new Client(['headers' => [
+            'Authorization' => "Bearer $token"
+        ]]);
+        $client->get('http://localhost:3000/callback');
+        // return response()->json([
+        //     "token" => $accessTokenJson,
+        // ]);
         /*
      * Setting the accessToken for session variable
      */
