@@ -82,12 +82,12 @@ class UserController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => "Bearer $token"
         ]]);
-        header("https://qkbfront.drapeauyamboka.com/callback");
+        // header("https://qkbfront.drapeauyamboka.com/callback");
         //$client->get('https://qkbfront.drapeauyamboka.com/login');
         //header("https://qkbfront.drapeauyamboka.com/callback");
-        // return response()->json([
-        //     "token" => $accessTokenJson,
-        // ]);
+        return response()->json([
+            "token" => $accessTokenJson,
+        ]);
         /*
      * Setting the accessToken for session variable
      */
