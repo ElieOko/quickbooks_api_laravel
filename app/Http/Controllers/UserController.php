@@ -11,27 +11,31 @@ session_start();
 class UserController extends Controller
 {
     //
-    public function oauth_quickbooks()
+    public $result = 0;
+    public function oauth_quickbooks($test = false)
     {
         //call config into config/quickbooks.php
         $config = config("quickbooks");
         //DataService Configuration
-        $dataService = DataService::Configure([
-            'auth_mode' => 'oauth2',
-            'ClientID' => $config['client_id'],
-            'ClientSecret' =>  $config['client_secret'],
-            'RedirectURI' => $config['redirect_uri'],
-            'scope' => $config['oauth_scope'],
-            'baseUrl' => "development",
-        ]);
-        $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
-        $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
-        // Store the url in PHP Session Object;
-        $_SESSION['authUrl'] = $authUrl;
-        // dd($_SESSION['authUrl']);
-        return response()->json([
-            "url" => $_SESSION['authUrl'],
-        ]);
+        if ($test == false) {
+            $dataService = DataService::Configure([
+                'auth_mode' => 'oauth2',
+                'ClientID' => $config['client_id'],
+                'ClientSecret' =>  $config['client_secret'],
+                'RedirectURI' => $config['redirect_uri'],
+                'scope' => $config['oauth_scope'],
+                'baseUrl' => "development",
+            ]);
+            $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+            $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
+            // Store the url in PHP Session Object;
+            $_SESSION['authUrl'] = $authUrl;
+            // dd($_SESSION['authUrl']);
+            return response()->json([
+                "url" => $_SESSION['authUrl'],
+            ]);
+        } else {
+        }
     }
     /*
      */
@@ -71,12 +75,14 @@ class UserController extends Controller
             'x_refresh_token_expires_in' => $accessToken->getRefreshTokenExpiresAt(),
             'expires_in' => $accessToken->getAccessTokenExpiresAt()
         );
-        $_SESSION['sessionAccessToken']  = $accessTokenJson;
+        // $_SESSION['sessionAccessToken']  = $accessTokenJson;
         //$dataService->updateOAuth2Token($accessToken)
+        $this->oauth_quickbooks($accessTokenJson);
         $token = $accessTokenJson["access_token"];
         $client = new Client(['headers' => [
             'Authorization' => "Bearer $token"
         ]]);
+        header("https://qkbfront.drapeauyamboka.com/callback");
         //$client->get('https://qkbfront.drapeauyamboka.com/login');
         //header("https://qkbfront.drapeauyamboka.com/callback");
         // return response()->json([
