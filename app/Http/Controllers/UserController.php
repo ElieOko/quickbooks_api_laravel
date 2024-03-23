@@ -53,7 +53,7 @@ class UserController extends Controller
             'ClientSecret' =>  $config['client_secret'],
             'RedirectURI' => $config['redirect_uri'],
             'scope' => $config['oauth_scope'],
-            'baseUrl' => "development",
+            'baseUrl' => "quickbooks.api.intuit.com",
         ]);
         $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
         parse_str(htmlspecialchars_decode($_SERVER['QUERY_STRING']), $qsArray);
