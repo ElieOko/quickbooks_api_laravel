@@ -77,7 +77,7 @@ class UserController extends Controller
         $client = new Client(['headers' => [
             'Authorization' => "Bearer $token"
         ]]);
-        $client->get('http://localhost:3000/callback');
+        $client->get('https://quickbook.drapeauyamboka.com/');
         // return response()->json([
         //     "token" => $accessTokenJson,
         // ]);
