@@ -17,25 +17,22 @@ class UserController extends Controller
         //call config into config/quickbooks.php
         $config = config("quickbooks");
         //DataService Configuration
-        if ($test == false) {
-            $dataService = DataService::Configure([
-                'auth_mode' => 'oauth2',
-                'ClientID' => $config['client_id'],
-                'ClientSecret' =>  $config['client_secret'],
-                'RedirectURI' => $config['redirect_uri'],
-                'scope' => $config['oauth_scope'],
-                'baseUrl' => "development",
-            ]);
-            $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
-            $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
-            // Store the url in PHP Session Object;
-            $_SESSION['authUrl'] = $authUrl;
-            // dd($_SESSION['authUrl']);
-            return response()->json([
-                "url" => $_SESSION['authUrl'],
-            ]);
-        } else {
-        }
+        $dataService = DataService::Configure([
+            'auth_mode' => 'oauth2',
+            'ClientID' => $config['client_id'],
+            'ClientSecret' =>  $config['client_secret'],
+            'RedirectURI' => $config['redirect_uri'],
+            'scope' => $config['oauth_scope'],
+            'baseUrl' => "development",
+        ]);
+        $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+        $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
+        // Store the url in PHP Session Object;
+        $_SESSION['authUrl'] = $authUrl;
+        // dd($_SESSION['authUrl']);
+        return response()->json([
+            "url" => $_SESSION['authUrl'],
+        ]);
     }
     /*
      */
@@ -75,19 +72,19 @@ class UserController extends Controller
             'x_refresh_token_expires_in' => $accessToken->getRefreshTokenExpiresAt(),
             'expires_in' => $accessToken->getAccessTokenExpiresAt()
         );
-        // $_SESSION['sessionAccessToken']  = $accessTokenJson;
+        $_SESSION['sessionAccessToken']  = $accessTokenJson;
         //$dataService->updateOAuth2Token($accessToken)
-        $this->oauth_quickbooks($accessTokenJson);
+        // $this->oauth_quickbooks($accessTokenJson);
         $token = $accessTokenJson["access_token"];
-        $client = new Client(['headers' => [
-            'Authorization' => "Bearer $token"
-        ]]);
+        // $client = new Client(['headers' => [
+        //     'Authorization' => "Bearer $token"
+        // ]]);
         // header("https://qkbfront.drapeauyamboka.com/callback");
         //$client->get('https://qkbfront.drapeauyamboka.com/login');
         //header("https://qkbfront.drapeauyamboka.com/callback");
-        // return response()->json([
-        //     "token" => $accessTokenJson,
-        // ]);
+        return response()->json([
+            "token" => $accessTokenJson,
+        ]);
         /*
      * Setting the accessToken for session variable
      */
@@ -166,6 +163,19 @@ class UserController extends Controller
         return response()->json([
             "invoices" => $test->Query("SELECT * FROM Customer"),
         ]);
+    }
+    public function redirect_to()
+    {
+        if (isset($_SESSION['sessionAccessToken'])) {
+            return
+                response()->json([
+                    "token" => $_SESSION['sessionAccessToken'],
+                ]);
+        }
+        return
+            response()->json([
+                "token" => "-vide-",
+            ]);
     }
 }
 //https://howtodoinjava.com/typescript/async-callback-with-parameters/#:~:text=Callback%20functions%20are%20a%20foundational,file%20operations%2C%20and%20event%20handling.
