@@ -20,9 +20,7 @@ defineProps({
         required: true,
     },
 });
-if (token) {
-    console.log("token =>", token);
-}
+
 
 </script>
 
@@ -79,6 +77,9 @@ if (token) {
                                 are a newcomer or have prior experience with Laravel, we recommend reading our
                                 documentation from beginning to end Token: {{ "Nothing" }}
                             </p>
+                            <div v-if="token">
+                                <p> {{ token }}</p>
+                            </div>
                         </div>
 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
