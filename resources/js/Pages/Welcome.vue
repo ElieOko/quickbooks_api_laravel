@@ -1,7 +1,9 @@
-<script setup>
+<script lang="ts" setup>
 import { Head, Link } from '@inertiajs/vue3';
+import { useAxiosRequestApiQkb } from '../utils/service/axios_api';
+//import { useAxiosRequestApiQkb } from '../utils/service/axios_api.ts'
 
-defineProps({
+const props = defineProps({
     canLogin: {
         type: Boolean,
     },
@@ -21,7 +23,19 @@ defineProps({
     },
 });
 
-
+if (props.token) {
+    
+}
+// useAxiosRequestApiQkb()
+(async()=>{
+    await useAxiosRequestApiQkb(props.token).get("")
+        .then(function (response) {
+            console.log("response -> ",response)
+    })
+    .catch(function (error) {
+               
+    })
+})()
 </script>
 
 <template>
