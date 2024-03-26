@@ -5,13 +5,13 @@ export const ApiRoutes = {
     //Item
     allItem: "/query",
     createItem: "/item",
-    detailItem: "/item/:id",
+    detailItem: "/item/",
     deleteItem: "/item?operation=delete",
     updateItem: "/item",
     //Customer
-    allCustomer: "/query",
+    allCustomer: "/query/",
     createCustomer: "/customer",
-    detailCustomer: "/customer/Invoice",
+    detailCustomer: "/customer/",
     deleteCustomer : "/customer/",
     //Invoice
     allInvoice: "/query",
@@ -19,6 +19,7 @@ export const ApiRoutes = {
     detailInvoice: "/invoice/:id",
     deleteInvoice: "/invoice?operation=delete",
     updateInvoice: "/invoice",
-
+    //vendor
+    
     //
 }

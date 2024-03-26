@@ -12,9 +12,9 @@ export const useAxiosRequestWithToken = (token:string = "",baseurl:string="quick
       })
       return useAxios
 }
-export const useAxiosRequestApiQkb = (token?:string,baseurl:string="quickbooks.api.intuit.com",realm:number  = 9341451930708145,query?:String) : AxiosInstance  =>{
+export const useAxiosRequestApiQkb = (token?:string,baseurl:string="quickbooks.api.intuit.com",realm:number  = 9341451930708145) : AxiosInstance  =>{
     const useAxios: AxiosInstance = axios.create({
-        baseURL               : `https://${baseurl}/v3/company/${realm}/}`,
+        baseURL               : `https://${baseurl}/v3/company/${realm}/`,
         headers   : {
           accept: 'application/json',
           "Content-type"      :   "application/json",
