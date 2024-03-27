@@ -83,12 +83,12 @@ class UserController extends Controller
         // header("https://qkbfront.drapeauyamboka.com/callback");
         //$client->get('https://qkbfront.drapeauyamboka.com/login');
         //header("https://qkbfront.drapeauyamboka.com/callback");
-        return Inertia::render('Welcome', [
-            'token' => $token,
-        ]);
-        // return response()->json([
-        //     "token" => $accessTokenJson,
+        // return Inertia::render('Welcome', [
+        //     'token' => $token,
         // ]);
+        return response()->json([
+            "token" => $accessTokenJson,
+        ]);
         /*
      * Setting the accessToken for session variable
      */
