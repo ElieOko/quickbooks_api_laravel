@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Head, Link } from '@inertiajs/vue3';
-import { useAxiosRequestApiQkb } from '../utils/service/axios_api';
+import { useAx, useAxiosRequestApiQkb } from '../utils/service/axios_api';
 //import { useAxiosRequestApiQkb } from '../utils/service/axios_api.ts'
 
 const props = defineProps({
@@ -27,8 +27,18 @@ if (props.token) {
     
 }
 // useAxiosRequestApiQkb()
+// (async()=>{
+//     await useAxiosRequestApiQkb(props.token).get("")
+//         .then(function (response) {
+//             console.log("response -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+// })()
+
 (async()=>{
-    await useAxiosRequestApiQkb(props.token).get("")
+    await useAx().post("/query?minorversion=70","select * from employee startposition 1 maxresults 5")
         .then(function (response) {
             console.log("response -> ",response)
     })
