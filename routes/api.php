@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\UserController;
 Route::get('/user/oauth', [UserController::class, 'oauth_quickbooks']);
 Route::get('/callback', [UserController::class, 'processCode']);
 Route::get('/redirect', [UserController::class, 'redirect_to']);
+Route::get('/create/department', [DepartmentController::class, 'store']);
 Route::get('/refresh_token/quickbook/{token}', [UserController::class, 'refresh_token']);//
 Route::get('/refresh_token/{last_token}', [UserController::class, 'token_fresh']);
 Route::get('/qb/invoice/all', [UserController::class, 'getInvoiceQueryAll']);

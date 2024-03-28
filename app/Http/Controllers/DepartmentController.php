@@ -29,6 +29,23 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         //
+        $dt = json_decode($request->getContent());
+        $check_id = Department::find($dt->Id);
+        if(!$check_id){
+            $check = Department::where("Name",$dt->Name)->get();
+            if(!$check){
+                Department::create([
+                    'DepartementId' => $dt->Id,
+                    'FullyQualifiedName' => $dt->FullyQualifiedName,
+                    'Domain'=>$dt->Domain,
+                    'Name' => $dt->Name,
+                    'SyncToken' => $dt->SyncToken,
+                    'SubDepartment' => $dt->SubDepartment,
+                    'Sparse' => $dt->Sparse,
+                    'Active' => $dt->Active
+                ]);
+            }
+        }
     }
 
     /**

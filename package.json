@@ -19,6 +19,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
+        "intuit-oauth": "^4.1.2",
         "node-quickbooks": "^2.0.45",
         "typescript": "^5.4.3"
     }

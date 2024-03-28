@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer("DepartementId")->unique();
             $table->string("FullyQualifiedName")->nullable();
             $table->string("Domain")->nullable();
-            $table->string("Name")->nullable();
+            $table->string("Name")->unique();
             $table->string("SyncToken")->nullable();
             $table->boolean("SubDepartment")->default(false)->nullable();
             $table->boolean("Sparse")->default(false)->nullable();

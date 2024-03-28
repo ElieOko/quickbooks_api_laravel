@@ -87,9 +87,9 @@ class UserController extends Controller
         // return Inertia::render('Welcome', [
         //     'token' => $token,
         // ]);
-        // return response()->json([
-        //     "token" => $accessTokenJson,
-        // ]);
+        return response()->json([
+            "token" => $accessTokenJson,
+        ]);
         /*
      * Setting the accessToken for session variable
      */
