@@ -38,7 +38,7 @@ if (props.token) {
 // })()
 
 (async()=>{
-    await useAx().post("/v1/request ",{query : "select * from employee startposition 1 maxresults 5"})
+    await useAx().post("&query = select * from employee startposition 1 maxresults 5")
         .then(function (response) {
             console.log("response -> ",response)
     })
