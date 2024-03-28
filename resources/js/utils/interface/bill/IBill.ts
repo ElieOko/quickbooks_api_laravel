@@ -1,24 +1,22 @@
+import { ICurrencyRef } from "../currency/ICurrency"
 import { ILineStandard } from "../line/ILineStandar"
 import { IMetaData } from "../other/IOther"
 
 export interface IBill{
-    id?:Number
+    Id?:Number
     SyncToken: String, 
     domain: String, 
     APAccountRef: {
-      name: String, 
-      value: Number
+      name?: String, 
+      value?: Number
     }, 
-    VendorRef: {
+    VendorRef?: {
       name: String, 
       value: Number
     }, 
     TxnDate: String, 
     TotalAmt: Number, 
-    CurrencyRef: {
-      name: String, 
-      value: String
-    }, 
+    CurrencyRef?:  ICurrencyRef
     LinkedTxn: [
       {
         TxnId: Number, 
@@ -34,3 +32,7 @@ export interface IBill{
     Balance?: Number
     MetaData? : IMetaData
 }
+
+export interface IBillEmail{
+  Address : String
+}  

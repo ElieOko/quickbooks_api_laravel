@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use QuickBooksOnline\API\DataService\DataService;
+use QuickBooksOnline\API\Core\OAuth\OAuth2\OAuth2LoginHelper;
 
 session_start();
 //https://intuit.github.io/QuickBooks-V3-PHP-SDK/quickstart.html#example-and-result
@@ -180,6 +181,40 @@ class UserController extends Controller
             response()->json([
                 "token" => "-vide-",
             ]);
+    }
+    public function token_fresh($last_token){
+        //  //call config into config/quickbooks.php
+        //  $config = config("quickbooks");
+        //  //DataService Configuration
+        //  $dataService = DataService::Configure([
+        //      'auth_mode' => 'oauth2',
+        //      'ClientID' => $config['client_id'],
+        //      'ClientSecret' =>  $config['client_secret'],
+        //      'RedirectURI' => $config['redirect_uri'],
+        //      'scope' => $config['oauth_scope'],
+        //      "refreshTokenKey"=> $last_token,
+        //      "QBORealmId" => $config['realm_id'],
+        //      'baseUrl' => "quickbooks.api.intuit.com",
+        //  ]);
+        //  $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+        //  $refreshedAccessTokenObj = $OAuth2LoginHelper->refreshToken();
+        //  $error = $OAuth2LoginHelper->getLastError();
+        //  if($error){
+            
+        //     } else {
+        //     //Refresh Token is called successfully
+        //     $dataService->updateOAuth2Token($refreshedAccessTokenObj);
+            
+        //     }
+        $config = config("quickbooks");
+        $oauth2LoginHelper = new OAuth2LoginHelper($config['client_id'],$config['client_secret']);
+        $accessTokenObj = $oauth2LoginHelper->refreshAccessTokenWithRefreshToken($last_token);
+        $accessTokenValue = $accessTokenObj->getAccessToken();
+        $refreshTokenValue = $accessTokenObj->getRefreshToken();
+        return response()->json([
+            "accessTokenValue" => $accessTokenValue,
+            "refreshTokenValue" => $refreshTokenValue
+        ]);
     }
 }
 //https://howtodoinjava.com/typescript/async-callback-with-parameters/#:~:text=Callback%20functions%20are%20a%20foundational,file%20operations%2C%20and%20event%20handling.

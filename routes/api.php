@@ -18,7 +18,8 @@ use App\Http\Controllers\UserController;
 Route::get('/user/oauth', [UserController::class, 'oauth_quickbooks']);
 Route::get('/callback', [UserController::class, 'processCode']);
 Route::get('/redirect', [UserController::class, 'redirect_to']);
-Route::get('/refresh_token/quickbook/{token}', [UserController::class, 'refresh_token']);
+Route::get('/refresh_token/quickbook/{token}', [UserController::class, 'refresh_token']);//
+Route::get('/refresh_token/{last_token}', [UserController::class, 'token_fresh']);
 Route::get('/qb/invoice/all', [UserController::class, 'getInvoiceQueryAll']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

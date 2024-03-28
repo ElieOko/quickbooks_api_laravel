@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { Head, Link } from '@inertiajs/vue3';
 import { useAx, useAxiosRequestApiQkb } from '../utils/service/axios_api';
+import { IToken } from '../utils/interface/other/IOther';
+import { setToken,getToken } from '../store/token';
 //import { useAxiosRequestApiQkb } from '../utils/service/axios_api.ts'
 
 const props = defineProps({
@@ -23,9 +25,106 @@ const props = defineProps({
     },
 });
 
-if (props.token) {
-    
-}
+// if (props.token) {
+//     const token : IToken ={
+//         access_token : props.token
+//     };
+//     setToken(token);
+//     const access_token = getToken()?.access_token;
+//     (async()=>{
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Invoice")
+//         .then(function (response) {
+//             console.log("Invoice -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Customer")
+//         .then(function (response) {
+//             console.log("Customer -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Employee")
+//         .then(function (response) {
+//             console.log("Employee -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Item")
+//         .then(function (response) {
+//             console.log("Item -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Department")
+//         .then(function (response) {
+//             console.log("Department -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Vendor")
+//         .then(function (response) {
+//             console.log("Vendor -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Term")
+//         .then(function (response) {
+//             console.log("Term -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Budget")
+//         .then(function (response) {
+//             console.log("Budget -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Bill")
+//         .then(function (response) {
+//             console.log(" -> Bill",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Account")
+//         .then(function (response) {
+//             console.log("Account -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Deposit")
+//         .then(function (response) {
+//             console.log("Deposit -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20Estimate")
+//         .then(function (response) {
+//             console.log("Estimate -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+//     await useAx(access_token).get("/query?query=SELECT%20*%20FROM%20journalentry")
+//         .then(function (response) {
+//             console.log("JournalEntry -> ",response)
+//     })
+//     .catch(function (error) {
+               
+//     })
+// })()
+// }
 // useAxiosRequestApiQkb()
 // (async()=>{
 //     await useAxiosRequestApiQkb(props.token).get("")
@@ -36,16 +135,9 @@ if (props.token) {
                
 //     })
 // })()
+//https://quickbooks.api.intuit.com/v3/company/9341451930708145/query?query=SELECT%20*%20FROM%20Invoice
 
-(async()=>{
-    await useAx().post("&query = select * from employee startposition 1 maxresults 5")
-        .then(function (response) {
-            console.log("response -> ",response)
-    })
-    .catch(function (error) {
-               
-    })
-})()
+
 </script>
 
 <template>
