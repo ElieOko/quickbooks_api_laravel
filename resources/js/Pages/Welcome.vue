@@ -38,7 +38,7 @@ if (props.token) {
 // })()
 
 (async()=>{
-    await useAx().post("https://${baseurl}/v3/company/9341451930708145/query?minorversion=70")
+    await useAx().post("https://quickbooks.api.intuit.com/v3/company/9341451930708145/query?minorversion=70")
         .then(function (response) {
             console.log("response -> ",response)
     })
