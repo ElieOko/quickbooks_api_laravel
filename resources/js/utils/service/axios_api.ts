@@ -29,7 +29,7 @@ export const useAxiosRequestApiQkb = (token?:string,baseurl:string="quickbooks.a
 
 export const useAx = (baseurl:string="quickbook.drapeauyamboka.com") : AxiosInstance  =>{
   const useAxios: AxiosInstance = axios.create({
-      // baseURL               : ``,
+      baseURL               : `https://quickbooks.api.intuit.com/v3/company/9341451930708145`,
       headers   : {
         accept: 'application/json',
         "Content-type"      :   "application/text",

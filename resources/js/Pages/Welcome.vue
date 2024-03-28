@@ -38,7 +38,7 @@ if (props.token) {
 // })()
 
 (async()=>{
-    await useAx().post("https://quickbooks.api.intuit.com/v3/company/9341451930708145/query?minorversion=70","select * from employee startposition 1 maxresults 5")
+    await useAx().post("/query?minorversion=70",{query : "select * from employee startposition 1 maxresults 5"})
         .then(function (response) {
             console.log("response -> ",response)
     })
